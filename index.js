@@ -7,7 +7,7 @@ export default (selector, child, rule) => {
     .filter(tag => tag.querySelector(child))
     .forEach(tag => {
 
-      const attr = selector.replace(/\W/g, '')
+      const attr = (selector+child).replace(/\W/g, '')
 
       styles += `[data-has-${attr}="${count}"] { ${rule} }\n`
       tag.setAttribute(`data-has-${attr}`, count)
