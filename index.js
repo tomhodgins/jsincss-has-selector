@@ -1,20 +1,18 @@
 export default (selector, child, rule) => {
 
-  let styles = ''
-  let count = 0
+  return Array.from(document.querySelectorAll(selector))
 
-  Array.from(document.querySelectorAll(selector))
     .filter(tag => tag.querySelector(child))
-    .forEach(tag => {
+
+    .reduce((styles, tag, count) => {
 
       const attr = (selector+child).replace(/\W/g, '')
-
       styles += `[data-has-${attr}="${count}"] { ${rule} }\n`
       tag.setAttribute(`data-has-${attr}`, count)
       count++
 
-    })
+      return styles
 
-  return styles
+    }, '')
 
 }
