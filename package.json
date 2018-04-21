@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "A :has() selector plugin for jsincss",
   "main": "index.js",
+  "module": "index.vanilla.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +13,7 @@
   },
   "keywords": [
     "jsincss",
+    "js-in-css",
     "has",
     "selector",
     "css",

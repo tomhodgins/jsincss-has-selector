@@ -1,4 +1,4 @@
-module.exports = (selector, child, rule) => {
+function has(selector, child, rule) {
 
   return Array.from(document.querySelectorAll(selector))
 
