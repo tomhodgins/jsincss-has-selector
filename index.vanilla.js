@@ -6,12 +6,10 @@ export default (selector, child, rule) => {
 
     .reduce((styles, tag, count) => {
 
-      const attr = selector.replace(/\W/g, '')
+      const attr = (selector + child).replace(/\W/g, '')
 
       tag.setAttribute(`data-has-${attr}`, count)
       styles += `[data-has-${attr}="${count}"] { ${rule} }\n`
-      count++
-
       return styles
 
     }, '')

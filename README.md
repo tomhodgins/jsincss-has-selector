@@ -65,7 +65,7 @@ This example will use the `jsincss` plugin to load a JS-in-CSS stylesheet making
 
   jsincss(() => `
 
-    ${has('ul', 'li', `
+    ${has('*', ':scope > li', `
       border: 1px solid red;
     `)}
 
@@ -80,7 +80,7 @@ import has from 'https://unpkg.com/jsincss-has-selector/index.vanilla.js'
 
 export default () => `
 
-  ${has('ul', 'li', `
+  ${has('*', ':scope > li', `
     border: 1px solid red;
   `)}
 
