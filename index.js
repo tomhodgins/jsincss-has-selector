@@ -1,17 +1,13 @@
 module.exports = (selector, child, rule) => {
-
-  return Array.from(document.querySelectorAll(selector))
-
+  const attr = (selector + child).replace(/\W/g, '')
+  const result = Array.from(document.querySelectorAll(selector))
     .filter(tag => tag.querySelector(child))
-
-    .reduce((styles, tag, count) => {
-
-      const attr = (selector + child).replace(/\W/g, '')
-
-      tag.setAttribute(`data-has-${attr}`, count)
-      styles += `[data-has-${attr}="${count}"] { ${rule} }\n`
-      return styles
-
-    }, '')
-
+    .reduce((output, tag, count) => {
+      output.add.push({tag: tag, count: count})
+      output.styles.push(`[data-has-${attr}="${count}"] { ${rule} }`)
+      return output
+    }, {add: [], remove: [], styles: []})
+  result.add.forEach(tag => tag.tag.setAttribute(`data-has-${attr}`, tag.count))
+  result.remove.forEach(tag => tag.setAttribute(`data-has-${attr}`, ''))
+  return result.styles.join('\n')
 }
